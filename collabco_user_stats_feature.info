@@ -14,6 +14,5 @@ features[user_permission][] = administer statistics
 features[user_permission][] = opt-in or out of tracking
 features[user_permission][] = use PHP for tracking visibility
 features[user_permission][] = view post access counter
-features[views_view][] = access
 features[views_view][] = access_log
 features_exclude[dependencies][ctools] = ctools
