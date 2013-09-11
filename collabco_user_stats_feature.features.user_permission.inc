@@ -39,6 +39,24 @@ function collabco_user_stats_feature_user_default_permissions() {
     'module' => 'statistics',
   );
 
+  // Exported permission: entityconnect add button.
+  $permissions['entityconnect add button'] = array(
+    'name' => 'entityconnect add button',
+    'roles' => array(
+      'Admin' => 'Admin',
+    ),
+    'module' => 'entityconnect',
+  );
+
+  // Exported permission: entityconnect edit button.
+  $permissions['entityconnect edit button'] = array(
+    'name' => 'entityconnect edit button',
+    'roles' => array(
+      'Admin' => 'Admin',
+    ),
+    'module' => 'entityconnect',
+  );
+
   // Exported permission: opt-in or out of tracking.
   $permissions['opt-in or out of tracking'] = array(
     'name' => 'opt-in or out of tracking',
