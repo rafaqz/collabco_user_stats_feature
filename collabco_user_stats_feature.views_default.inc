@@ -193,7 +193,7 @@ function collabco_user_stats_feature_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'User comment aggregates';
+  $handler->display->display_options['title'] = 'Access Aggregates';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
@@ -320,6 +320,7 @@ function collabco_user_stats_feature_views_default_views() {
     'page' => 'page',
     'default' => 0,
   );
+  $handler->display->display_options['sitename_title'] = 0;
   $export['activity_aggregates'] = $view;
 
   return $export;
