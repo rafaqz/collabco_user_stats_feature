@@ -11,6 +11,107 @@ function collabco_user_stats_feature_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'access_aggregates';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'users';
+  $view->human_name = 'Access Aggregates';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Access Aggregates';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'access user profiles';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'picture' => 'picture',
+    'name' => 'name',
+    'aid' => 'aid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'aid';
+  $handler->display->display_options['style_options']['info'] = array(
+    'picture' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'aid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  /* Field: COUNT(DISTINCT Access log: Aid) */
+  $handler->display->display_options['fields']['aid']['id'] = 'aid';
+  $handler->display->display_options['fields']['aid']['table'] = 'accesslog';
+  $handler->display->display_options['fields']['aid']['field'] = 'aid';
+  $handler->display->display_options['fields']['aid']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['aid']['label'] = 'Page Views';
+  /* Sort criterion: User: Created date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'users';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['operator'] = 'empty';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'admin/people/access-aggregates';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Access Aggregates';
+  $handler->display->display_options['menu']['weight'] = '18';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $export['access_aggregates'] = $view;
+
+  $view = new view();
   $view->name = 'access_log';
   $view->description = 'Lists all page view activity for each user.';
   $view->tag = 'People';
@@ -182,11 +283,11 @@ function collabco_user_stats_feature_views_default_views() {
   $export['access_log'] = $view;
 
   $view = new view();
-  $view->name = 'activity_aggregates';
+  $view->name = 'comment_aggregates';
   $view->description = 'Aggregates page views and comments';
   $view->tag = 'People';
   $view->base_table = 'comment';
-  $view->human_name = 'Activity Aggregates';
+  $view->human_name = 'Comment Aggregates';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -302,9 +403,9 @@ function collabco_user_stats_feature_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'admin/people/activity-aggregates';
+  $handler->display->display_options['path'] = 'admin/people/comment-aggregates';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Activity Aggregates';
+  $handler->display->display_options['menu']['title'] = 'Comment Aggregates';
   $handler->display->display_options['menu']['description'] = 'Displays aggregated comments and page views for all users';
   $handler->display->display_options['menu']['weight'] = '22';
   $handler->display->display_options['menu']['name'] = 'management';
@@ -321,7 +422,7 @@ function collabco_user_stats_feature_views_default_views() {
     'default' => 0,
   );
   $handler->display->display_options['sitename_title'] = 0;
-  $export['activity_aggregates'] = $view;
+  $export['comment_aggregates'] = $view;
 
   return $export;
 }
