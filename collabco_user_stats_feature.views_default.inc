@@ -12,8 +12,8 @@ function collabco_user_stats_feature_views_default_views() {
 
   $view = new view();
   $view->name = 'access_aggregates';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Aggregate page views per user';
+  $view->tag = 'User Stats Feature';
   $view->base_table = 'users';
   $view->human_name = 'Access Aggregates';
   $view->core = 7;
@@ -130,7 +130,7 @@ function collabco_user_stats_feature_views_default_views() {
   $view = new view();
   $view->name = 'access_log';
   $view->description = 'Lists all page view activity for each user.';
-  $view->tag = 'People';
+  $view->tag = 'User Stats Feature';
   $view->base_table = 'accesslog';
   $view->human_name = 'Access Log';
   $view->core = 7;
@@ -301,7 +301,7 @@ function collabco_user_stats_feature_views_default_views() {
   $view = new view();
   $view->name = 'comment_aggregates';
   $view->description = 'Aggregates page views and comments';
-  $view->tag = 'People';
+  $view->tag = 'User Stats Feature';
   $view->base_table = 'comment';
   $view->human_name = 'Comment Aggregates';
   $view->core = 7;
