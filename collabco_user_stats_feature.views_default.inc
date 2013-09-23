@@ -99,6 +99,24 @@ function collabco_user_stats_feature_views_default_views() {
   $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
   $handler->display->display_options['filters']['rid']['field'] = 'rid';
   $handler->display->display_options['filters']['rid']['operator'] = 'empty';
+  /* Filter criterion: Access log: Timestamp */
+  $handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['filters']['timestamp']['table'] = 'accesslog';
+  $handler->display->display_options['filters']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['filters']['timestamp']['operator'] = 'between';
+  $handler->display->display_options['filters']['timestamp']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['timestamp']['expose']['operator_id'] = 'timestamp_op';
+  $handler->display->display_options['filters']['timestamp']['expose']['label'] = 'Time Period';
+  $handler->display->display_options['filters']['timestamp']['expose']['description'] = 'List all page view activity between two dates.';
+  $handler->display->display_options['filters']['timestamp']['expose']['operator'] = 'timestamp_op';
+  $handler->display->display_options['filters']['timestamp']['expose']['identifier'] = 'timestamp';
+  $handler->display->display_options['filters']['timestamp']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -310,7 +328,7 @@ function collabco_user_stats_feature_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Access Aggregates';
+  $handler->display->display_options['title'] = 'Comment Aggregates';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
@@ -384,38 +402,30 @@ function collabco_user_stats_feature_views_default_views() {
   $handler->display->display_options['fields']['subject']['label'] = 'Comments';
   $handler->display->display_options['fields']['subject']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['subject']['alter']['ellipsis'] = FALSE;
-  /* Field: COUNT(DISTINCT Access log: Aid) */
-  $handler->display->display_options['fields']['aid']['id'] = 'aid';
-  $handler->display->display_options['fields']['aid']['table'] = 'accesslog';
-  $handler->display->display_options['fields']['aid']['field'] = 'aid';
-  $handler->display->display_options['fields']['aid']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['aid']['group_type'] = 'count_distinct';
-  $handler->display->display_options['fields']['aid']['label'] = 'Page Views';
-  /* Filter criterion: Access log: Timestamp */
-  $handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['filters']['timestamp']['table'] = 'accesslog';
-  $handler->display->display_options['filters']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['filters']['timestamp']['relationship'] = 'uid';
-  $handler->display->display_options['filters']['timestamp']['operator'] = 'between';
-  $handler->display->display_options['filters']['timestamp']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['timestamp']['expose']['operator_id'] = 'timestamp_op';
-  $handler->display->display_options['filters']['timestamp']['expose']['label'] = 'Time Period';
-  $handler->display->display_options['filters']['timestamp']['expose']['description'] = 'List all comments and page views between two dates.';
-  $handler->display->display_options['filters']['timestamp']['expose']['operator'] = 'timestamp_op';
-  $handler->display->display_options['filters']['timestamp']['expose']['identifier'] = 'timestamp';
-  $handler->display->display_options['filters']['timestamp']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    5 => 0,
-    4 => 0,
-  );
   /* Filter criterion: User: Roles */
   $handler->display->display_options['filters']['rid']['id'] = 'rid';
   $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
   $handler->display->display_options['filters']['rid']['field'] = 'rid';
   $handler->display->display_options['filters']['rid']['relationship'] = 'uid';
   $handler->display->display_options['filters']['rid']['operator'] = 'empty';
+  /* Filter criterion: Comment: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'comment';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = 'between';
+  $handler->display->display_options['filters']['created']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['created']['expose']['operator_id'] = 'created_op';
+  $handler->display->display_options['filters']['created']['expose']['label'] = 'Comment Post Dates';
+  $handler->display->display_options['filters']['created']['expose']['description'] = 'List all comments made between two dates.';
+  $handler->display->display_options['filters']['created']['expose']['operator'] = 'created_op';
+  $handler->display->display_options['filters']['created']['expose']['identifier'] = 'created';
+  $handler->display->display_options['filters']['created']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
